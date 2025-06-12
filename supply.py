@@ -64,9 +64,6 @@ if response.status_code == 200:
     
     roles = df["ROL"]
     roles_lista = roles.dropna().drop_duplicates().sort_values(ascending=True).tolist()
-else:
-    st.error(f"Error al cargar los datos: {response.status_code} - {response.text}")
-    st.stop()
 
 if response_json.status_code == 200:
     @st.cache_data
@@ -79,8 +76,8 @@ if response_json.status_code == 200:
     gdf['CODIGO'] = gdf['rol']+"_"+gdf['COD_HITO_R']
     
 else:
-    st.sidebar.info("Sin acceso a los datos.")
-    st.stop()
+    #st.sidebar.info("Sin acceso a los datos.")
+    #st.stop()
 
 mostrar_mapa = st.sidebar.toggle("Activar mapas?", help = "Puede afectar el rendimiento del dashboard")
 
