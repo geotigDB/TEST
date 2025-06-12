@@ -64,6 +64,9 @@ if response.status_code == 200:
     
     roles = df["ROL"]
     roles_lista = roles.dropna().drop_duplicates().sort_values(ascending=True).tolist()
+else:
+    st.error(f"Error al cargar los datos: {response.status_code} - {response.text}")
+    st.stop()
 
 if response_json.status_code == 200:
     @st.cache_data
